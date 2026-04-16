@@ -1,27 +1,38 @@
 <form action="{{route('mahasiswa.save')}}" method="post">
-			Nama Lengkap:
-			<input type="text" name="nama_lengkap" size=50>
-		<br>
-        <br>
-			Nomor Induk Mahasiswa:
-			<input type="text" name="nim" size=50>
-		<br>
-        <br>
-			Nomor Induk Siswa Nasional:
-			<input type="text" name="nisn" size=50>
-		<br>
-        <br>
-            Tempat Lahir:
-			<input type="text" name="tempat_lahir" size=50>
-		<br>
-        <br>
-            Tanggal Lahir:
-			<input type="text" name="tanggal_lahir" size=50>
-		<br>
-        <br>
-			Alamat:
-			<input type="text" name="alamat_lengkap" size=60>
-		<br>
-</form>
+@csrf
+<table>
+	<tr>
+		<td> Nama Lengkap </td>
+		<td> : </td>
+		<td> <input type="text" name="Fullname"> </td>
+	</tr>
+	<tr>
+		<td> Nomor Induk Mahasiswa </td>
+		<td> : </td>
+		<td> <input type="text" name="NIM"> </td>
+	</tr>
+	<tr>
+		<td> Nomor Induk Siswa Nasional </td>
+		<td> : </td>
+		<td> <input type="text" name="NISN"> </td>
+	</tr>
+	<tr>
+		<td> Tempat Lahir </td>
+		<td> : </td>
+		<td> <input type="text" name="Tempat_Lahir"> </td>
+	</tr>
+	<tr>
+		<td> Tanggal Lahir </td>
+		<td> : </td>
+		<td> <input type="text" name="Tanggal_Lahir"> </td>
+	</tr>
+	<tr>
+		<td> Alamat </td>
+		<td> : </td>
+		<td> <textarea name="Alamat"> </textarea> </td>
+	</tr>
+</table>
 
-			
+<button type="submit"> Add </button>
+<button type="reset"> Clear </button>
+</form>
