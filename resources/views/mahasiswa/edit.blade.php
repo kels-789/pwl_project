@@ -16,7 +16,7 @@
 	<tr>
 		<td> Nomor Induk Siswa Nasional </td>
 		<td> : </td>
-		<td> <input type="text" name="NISN" value="{{$mahasiswa->NISN}}"> </td>
+		<td> <input type="text" name="NIDN" value="{{$mahasiswa->NIDN}}"> </td>
 	</tr>
 	<tr>
 		<td> Tempat Lahir </td>
@@ -31,12 +31,10 @@
 	<tr>
 		<td> Alamat </td>
 		<td> : </td>
-		<td> <textarea name="Alamat" value="{{$mahasiswa->Alamat}}"> </textarea> </td>
+		<td> <textarea name="Alamat">{{$mahasiswa->Alamat}}</textarea> </td>
 	</tr>
 </table>
 
 <button type="submit"> Add </button>
 <button type="reset"> Clear </button>
 </form>
-
-			

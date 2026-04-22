@@ -1,3 +1,6 @@
+<a href={{route('mahasiswa.add')}}>
+    <input type="button" value="create">
+</a>   
 <table border="1">
     <thead>
         <th> No </th>
@@ -8,17 +11,29 @@
         <th> Tanggal Lahir </th>
         <th> Alamat </th>
         <th> Tanggal Dibuat </th>
+        <th> Aksi </th>
     </thead>
     @foreach ($mahasiswa as $m)
     <tr>
-        <td>{{$m->id}} 1 </td>
-        <td>{{$m->Fullname}} Kelsy Angelita </td>
-        <td>{{$m->NIM}} 24210018 </td>
-        <td>{{$m->NIDN}} NISN </td>
-        <td>{{$m->Tempat_Lahir}} Pontianak </td>
-        <td>{{$m->Tanggal_Lahir}} 19 Desember 2006 </td>
-        <td>{{$m->Alamat}} Jl. Tanjung Pura </td>
-        <td>{{$m->created_at}} 02 April 2026 </td>
+        <td>{{$m->id}} </td>
+        <td>{{$m->Fullname}} </td>
+        <td>{{$m->NIM}} </td>
+        <td>{{$m->NIDN}} </td>
+        <td>{{$m->Tempat_Lahir}} </td>
+        <td>{{$m->Tanggal_Lahir}} </td>
+        <td>{{$m->Alamat}} </td>
+        <td>{{$m->created_at}} </td>
+        <td>
+            <a href={{route('mahasiswa.update', $m->id)}}>
+                <input type="button" value="edit">
+            </a>   
+            <form action="{{route('mahasiswa.delete', $m->id)}}" method="post">
+                @csrf
+                <input type="hidden" name="id" value="{{$m->id}}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="submit" value="delete">
+            </form>
+        </td>
     </tr>
     @endforeach
 </table>
