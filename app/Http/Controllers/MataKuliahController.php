@@ -12,7 +12,9 @@ class MataKuliahController extends Controller
      */
     public function index()
     {
-        //
+        return view('matakuliah.index', [
+            'matakuliah' => MataKuliah::all()
+        ]);
     }
 
     /**
@@ -20,7 +22,7 @@ class MataKuliahController extends Controller
      */
     public function create()
     {
-        //
+        return view('matakuliah.create');
     }
 
     /**
@@ -28,38 +30,50 @@ class MataKuliahController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+
+        MataKuliah::create($data);
+
+        return redirect()->action([MataKuliahController::class, 'index']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(MataKuliah $mataKuliah)
+    public function show($id)
     {
-        //
+        return MataKuliah::find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(MataKuliah $mataKuliah)
+    public function edit($id)
     {
-        //
+        return view('matakuliah.edit', [
+            'matakuliah' => MataKuliah::find($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MataKuliah $mataKuliah)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->except('_token', 'id', '_method');
+
+        MataKuliah::find($id)->update($data);
+
+        return redirect()->action([MataKuliahController::class, 'index']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(MataKuliah $mataKuliah)
+    public function destroy($id)
     {
-        //
+        MataKuliah::find($id)->delete();
+
+        return redirect()->action([MataKuliahController::class, 'index']);
     }
 }
