@@ -6,9 +6,9 @@ use App\Http\Controllers\MataKuliahController;
 use App\Http\Controllers\JurusanController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::get('/', function () {
+    return view('landing');
+})->name('landing');
 
 Route::get('/mahasiswa', [MahasiswaController::class, 'index']);
 Route::get('/mahasiswa-create', [MahasiswaController::class, 'create'])->name('mahasiswa.add');
