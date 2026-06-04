@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kelas extends Model
 {
-    protected $table='table_dosen';
+    protected $table='table_kelas';
     protected $fillable=[
         'kode_kelas',
         'kode_mata_kuliah',
         'kode_dosen',
         'hari',
         'jam',
+        'tahun_ajaran',
         'ruang_kelas',
         'jumlah_max',
         'jumlah_mahasiswa',
