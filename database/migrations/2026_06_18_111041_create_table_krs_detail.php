@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('table_krs_detail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('kode_krs');
-            $table->unsignedBigInteger('kode_kelas');
-            $table->enum('status', ['pending', 'approved', 'declined']);
-            $table->timestamps();
+	        $table->unsignedBigInteger('krs_id');
+            // Define foreign key constraint
+
+	        $table->unsignedBigInteger('kelas_id');
+
+	        $table->enum('status', ['pending', 'approved', 'declined']);
+	        $table->timestamps();
         });
     }
 

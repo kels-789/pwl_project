@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KRS;
 use Illuminate\Http\Request;
 
-class KrsIsiController extends Controller
+class KRSController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('krs.index', [
+            'krs' => KRS::get()
+        ]);
     }
 
     /**
@@ -33,15 +36,18 @@ class KrsIsiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        return view('krs.show', [
+            'krs' => KRS::where('id', '=', $id)->with(['detail', 'mahasiswa',
+                'detail.kelas', 'detail.kelas.dosen', 'detail.kelas.matakuliah'])->first()
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(KRS $kRS)
     {
         //
     }
@@ -49,7 +55,7 @@ class KrsIsiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, KRS $kRS)
     {
         //
     }
@@ -57,7 +63,7 @@ class KrsIsiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(KRS $kRS)
     {
         //
     }

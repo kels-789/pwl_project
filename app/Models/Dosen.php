@@ -17,4 +17,8 @@ class Dosen extends Model
         'Tanggal_Lahir',
         'Alamat'
     ];
+
+    public function kelas() {
+        return $this->hasMany(Kelas::class, 'id', 'kode_dosen');
+    }
 }

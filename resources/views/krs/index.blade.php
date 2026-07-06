@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Index KRS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   </head>
   <body>
@@ -44,33 +44,32 @@
         </div>
       </div>
     </nav>
-    <a href={{ action([App\Http\Controllers\KelasController::class, 'create']) }}>
+    <a href={{ action([App\Http\Controllers\KRSController::class, 'create']) }}>
         <input type="button" value="Create">
     </a>
     <table class="table table-striped">
         <thead>
             <th>No</th>
-            <th>Kode Kelas</th>
-            <th>Dosen</th>
-            <th>Mata Kuliah</th>
-            <th>Ruang</th>
-            <th>Hari</th>
-            <th>Jam</th>
+            <th>NIM</th>
+            <th>Nama Mahasiswa</th>
             <th>Tahun Ajaran</th>
+            <th>Semester</th>
+            <th>Total SKS</th>
             <th>Aksi</th>
         </thead>
-        @foreach ($kelas as $k)
+        @foreach ($krs as $k)
         <tr>
             <td>{{$k->id}}</td>
-            <td>{{$k->kode_kelas}}</td>
-            <td>{{$k->dosen->Fullname}}</td>
-            <td>{{$k->mataKuliah->Nama_Mata_Kuliah}}</td>
-            <td>{{$k->ruang_kelas}}</td>
-            <td>{{$k->hari}}</td>
-            <td>{{$k->jam}}</td>
+            <td>{{$k->mahasiswa->NIM}}</td>
+            <td>{{$k->mahasiswa->Fullname}}</td>
             <td>{{$k->tahun_ajaran}}</td>
+            <td>{{$k->semester}}</td>
+            <td>{{$k->total_sks}}</td>
             <td>
-                <form action="{{ action([App\Http\Controllers\KelasController::class, 'destroy'], $k->id)}}"  method="post">
+                <a href="{{ action([App\Http\Controllers\KRSController::class, 'show'], $k->id)}}" target="_blank" clas="button">
+                  <input type="button" value="View">
+                </a>
+                <form action="{{ action([App\Http\Controllers\KRSController::class, 'destroy'], $k->id)}}"  method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{$k->id}}">
                     <input type="hidden" name="_method" value="DELETE">

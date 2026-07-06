@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_krs_isi', function (Blueprint $table) {
+        Schema::create('table_krs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('kode_mahasiswa');
+            // Define foreign key constraint
+
             $table->string('tahun_ajaran');
             $table->enum('semester', ['ganjil', 'genap']);
             $table->enum('status', ['pending', 'approved', 'partial', 'declined']);
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_krs_isi');
+        Schema::dropIfExists('table_krs');
     }
 };

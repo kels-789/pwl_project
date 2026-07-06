@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
+use App\Models\Jurusan;
+use App\Models\Dosen;
+use App\Models\MataKuliah;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -11,7 +15,9 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        return view('kelas.index', [
+            'kelas' => Kelas::get()
+        ]);
     }
 
     /**
@@ -19,7 +25,12 @@ class KelasController extends Controller
      */
     public function create()
     {
-        //
+        return view('kelas.create', [
+            'dosen' => Dosen::get(),
+            'mataKuliah'=> MataKuliah::get(),
+            'hari' => Kelas::ListHari(),
+            'jam' => Kelas::ListJam(),
+        ]);
     }
 
     /**
@@ -27,29 +38,17 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+
+        Kelas::create($data);
+
+        return redirect()->action([KelasController::class, 'index']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function show(Kelas $kelas)
     {
         //
     }
@@ -57,8 +56,10 @@ class KelasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        Kelas::find($id)->delete();
+
+        return redirect()->action([KelasController::class, 'index']);
     }
 }

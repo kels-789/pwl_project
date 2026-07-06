@@ -4,12 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class KrsDetail extends Model
+class KRSDetail extends Model
 {
-    protected $table='table_krs_detail';
-    protected $fillable=[
-        'kode_krs',
-        'kode_kelas',
+    protected $table = 'table_krs_detail';
+
+    protected $fillable = [
+        'krs_id',
+        'kelas_id',
         'status'
     ];
+
+    public function kelas() {
+        return $this->hasOne(Kelas::class, 'id', 'kelas_id');
+    }
+
+    public function krs() {
+        return $this->hasOne(KRS::class, 'id', 'krs_id');
+    }
 }
