@@ -103,7 +103,7 @@ class AuthController extends Controller
             $user = Auth::user();
 
             // (optional) Attach the role to the token.
-            $token = Auth::claims(['role' => $user->role])->fromUser($user);
+            // $token = Auth::claims(['role' => $user->role])->fromUser($user);
             
             return redirect(route('mahasiswa.index'), 302, ['Authorization' => 'Bearer ' . $token]);
         } catch (Exception $e) {
